@@ -6,7 +6,8 @@ ARG RUNNER_VERSION="2.323.0"
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt update -y && apt upgrade -y && useradd -m docker
-RUN apt install -y --no-install-recommends curl
+RUN apt install -y --no-install-recommends curl ca-certificates
+RUN update-ca-certificates
 #RUN apt install -y --no-install-recommends \
 #    curl jq build-essential libssl-dev libffi-dev libicu-dev python3 python3-venv python3-dev python3-pip git unzip libasound2t64
 
