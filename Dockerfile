@@ -1,4 +1,4 @@
-FROM ubuntu:24.04
+FROM ubuntu:25.04
 
 ARG RUNNER_VERSION="2.322.0"
 
@@ -18,8 +18,6 @@ RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
 
 RUN chown -R docker /home/docker && /home/docker/actions-runner/bin/installdependencies.sh
 
-RUN sed -i 's/\x41\x00\x43\x00\x54\x00\x49\x00\x4F\x00\x4E\x00\x53\x00\x5F\x00\x52\x00\x45\x00\x53\x00\x55\x00\x4C\x00\x54\x00\x53\x00\x5F\x00\x55\x00\x52\x00\x4C\x00/\x41\x00\x43\x00\x54\x00\x49\x00\x4F\x00\x4E\x00\x53\x00\x5F\x00\x52\x00\x45\x00\x53\x00\x55\x00\x4C\x00\x54\x00\x53\x00\x5F\x00\x4F\x00\x52\x00\x4C\x00/g' /home/docker/actions-runner/bin/Runner.Worker.dll
-
 COPY start.sh start.sh
 
 # make the script executable
@@ -37,6 +35,6 @@ RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
 ENV PATH="$NVM_DIR/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
-RUN npm install --global yarn
+#RUN npm install --global yarn
 
 ENTRYPOINT ["./start.sh"]
